@@ -17,17 +17,19 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ListTitle)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ListID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ListID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ListID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ListTitle)
+            </td>
+            <td>
+                @* @Html.ActionLink("Edit", "Edit", new { id=item.ListID }) |*@
+                <a href="@Url.Action("Edit", new { id=item.ListID })" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a href="@Url.Action("Details", new { id = item.ListID })" title="Details"><span class="glyphicon glyphicon-list-alt"></span></a>
+                <a href="@Url.Action("Delete", new { id = item.ListID })" title="Delete"><span class="glyphicon glyphicon-warning-sign"></span></a>
+            </td>
+        </tr>
+     }
 
-</table>
+    </table>

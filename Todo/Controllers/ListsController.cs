@@ -20,6 +20,31 @@ namespace Todo.Controllers
             return View(db.Lists.ToList());
         }
 
+
+        public ActionResult AllDone(int? id)//Marks all list items done.
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            List list = db.Lists.Find(id);
+            if (list == null)
+            {
+                return HttpNotFound();
+            }
+
+            foreach (var listItems in list.Items)//finds individual items in list. Whatever items it finds we then invoke the IsDone(). All items in list get a checkmark
+            {
+                listItems.IsDone = true;
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("Details" , new { id = list.ListID });//new creates a temp obj to pass along to "Details"
+        }
+
+
+
         // GET: Lists/Details/5
         public ActionResult Details(int? id)
         {

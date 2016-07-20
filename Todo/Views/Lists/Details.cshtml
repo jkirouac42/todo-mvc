@@ -71,6 +71,7 @@
     }
 </table>
     <p>
+        @Html.ActionLink("Mark All Done", "AllDone", new {id = Model.ListID })
         @Html.ActionLink("Edit", "Edit", new { id = Model.ListID }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
